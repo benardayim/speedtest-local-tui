@@ -1,0 +1,29 @@
+{
+  "name": "speedtest-local",
+  "version": "1.0.0",
+  "description": "",
+  "main": "speedtest.mjs",
+  "scripts": {
+    "start": "node ./speedtest.mjs"
+  },
+  "keywords": [
+    "speedtest",
+    "speed",
+    "network",
+    "lan",
+    "bandwidth",
+    "wifi",
+    "ethernet",
+    "node",
+    "javascript",
+    "nodejs",
+    "tui",
+    "zero-dependency",
+    "no-deps",
+    "local",
+    "discovery"
+  ],
+  "author": "benardayim <arda@benardayim.com>",
+  "license": "MIT",
+  "type": "module"
+}
