@@ -1,3 +1,5 @@
+#! node
+
 import dgram from 'dgram';
 import net from 'net';
 import crypto from 'crypto';
@@ -230,15 +232,16 @@ function render() {
 
 	if (mode !== 'idle') {
 		const ip = (mode.startsWith('receiving') || mode.startsWith('serving')) ? remotePeerIp : peers[selectedIndex];
-		console.log(`[ACTIVE] Mode: ${mode.toUpperCase()} with ${ip}`);
+		console.log(`Mode: ${mode.toUpperCase()} with ${ip}`);
 		console.log(`  Upload:   ${formatSpeed(stats.upSpeed)}`);
 		console.log(`  Download: ${formatSpeed(stats.downSpeed)}`);
 	} else {
-		console.log('[IDLE] Select a peer and press u, d, or x to start.');
+		console.log('Select a peer and press u, d, or x to start.');
 	}
 }
 
 // Input Handling
+console.log(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
