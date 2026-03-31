@@ -1,10 +1,13 @@
 {
-  "name": "speedtest-local",
+  "name": "speedtest-local-tui",
   "version": "1.0.0",
-  "description": "",
-  "main": "speedtest.mjs",
+  "description": "Zero-dependency LAN speedtest for Node.js as a single script.",
+  "main": "speedtest-local-tui.mjs",
+  "bin": {
+    "speedtest-local-tui": "./speedtest-local-tui.mjs"
+  },
   "scripts": {
-    "start": "node ./speedtest.mjs"
+    "start": "node ./speedtest-local-tui.mjs"
   },
   "keywords": [
     "speedtest",
@@ -23,6 +26,13 @@
     "local",
     "discovery"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benardayim/speedtest-local-tui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/benardayim/speedtest-local-tui/issues"
+  },
   "author": "benardayim <arda@benardayim.com>",
   "license": "MIT",
   "type": "module"
