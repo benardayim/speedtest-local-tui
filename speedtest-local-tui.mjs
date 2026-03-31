@@ -241,7 +241,6 @@ function render() {
 }
 
 // Input Handling
-console.log(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
