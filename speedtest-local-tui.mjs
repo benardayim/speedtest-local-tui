@@ -8,11 +8,11 @@ const PEER_TIMEOUT = 10000;
 const DISCOVERY_PORT = 41000;
 const TRANSFER_PORT = 41001;
 
-let peers = []; // Array of string IPs
+let peers = [];
 let selectedIndex = -1;
-let lastSeen = new Map(); // IP -> timestamp
+let lastSeen = new Map();
 
-let mode = 'idle'; // 'idle', 'upload', 'download', 'duplex', 'custom'
+let mode = 'idle';
 let customIpBuffer = '';
 let activeSockets = [];
 let remotePeerIp = '';
@@ -23,8 +23,8 @@ let stats = {
 	startTime: 0,
 	lastUpBytes: 0,
 	lastDownBytes: 0,
-	upSpeed: 0, // bytes/sec
-	downSpeed: 0 // bytes/sec
+	upSpeed: 0,
+	downSpeed: 0
 };
 
 let speedInterval;
@@ -204,39 +204,38 @@ function formatSpeed(bytesPerSec) {
 
 function render() {
 	process.stdout.write('\x1b[2J\x1b[H');
-	console.log('=== NodeJS Speedtest P2P ===\n');
+	process.stdout.write("\n");
 
 	if (mode === 'custom') {
-		console.log('Enter Custom IP (Press Enter to confirm, Esc to cancel):');
+		console.log('enter custom IP (enter to confirm, esc to cancel):');
 		console.log('> ' + customIpBuffer);
 		return;
 	}
 
-	console.log('Discovered Peers:');
 	if (peers.length === 0) {
-		console.log('  No peers found yet...');
+		console.log('  no peers found yet...');
 	} else {
 		peers.forEach((peer, i) => {
 			if (i === selectedIndex) {
-				console.log(`\x1b[47m\x1b[30m> ${peer}\x1b[0m`); // Highlight background white, text black
+				console.log(`\x1b[47m\x1b[30m> ${peer}\x1b[0m`);
 			} else {
 				console.log(`  ${peer}`);
 			}
 		});
 	}
 
-	console.log('\nControls:');
-	console.log('  \u2191/\u2193 : Select Peer  |  c : Custom IP');
-	console.log('  u : Upload Test  |  d : Download Test  |  x : Duplex Test');
-	console.log('  q : Stop Test / Quit\n');
+	console.log("");
+	console.log('  \u2191/\u2193: select | c: custom IP');
+	console.log('  u: upload | d: download | x: duplex');
+	console.log('  q: stop/quit\n');
 
 	if (mode !== 'idle') {
 		const ip = (mode.startsWith('receiving') || mode.startsWith('serving')) ? remotePeerIp : peers[selectedIndex];
-		console.log(`Mode: ${mode.toUpperCase()} with ${ip}`);
-		console.log(`  Upload:   ${formatSpeed(stats.upSpeed)}`);
-		console.log(`  Download: ${formatSpeed(stats.downSpeed)}`);
+		console.log(`${mode.toUpperCase()} with ${ip}`);
+		console.log(`  upload:   ${formatSpeed(stats.upSpeed)}`);
+		console.log(`  download: ${formatSpeed(stats.downSpeed)}`);
 	} else {
-		console.log('Select a peer and press u, d, or x to start.');
+		console.log('select a peer and press u, d, or x to start.');
 	}
 }
 
